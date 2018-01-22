@@ -9,13 +9,12 @@ typedef struct{
 	int vexnum;//顶点数量
 	int acrenum;//边的数量 
 }AdjMatrix;
-
 AdjMatrix *Create(){
 	AdjMatrix *adj;
 	adj = (AdjMatrix*)malloc(sizeof(AdjMatrix));
 	
-	printf("请输入网的顶点数和边数:");
-	scanf("%d%d",&adj->vexnum,&adj->acrenum);
+	printf("请输入有向网的顶点数和边数:");
+    scanf("%d%d",&adj->vexnum,&adj->acrenum);
 	
 	int i;
 	printf("请输入点信息:\n");
@@ -48,7 +47,6 @@ AdjMatrix *Create(){
 		while(adj->Vex[j++] != a[0]&&j<adj->acrenum);
 		while(adj->Vex[k++] != a[1]&&k<adj->acrenum);
 		adj->acre[j-1][k-1]=t;
-		adj->acre[k-1][j-1]=t;
 	}
 	
 	printf("\n你输入的邻接矩阵如下:\n");
@@ -61,53 +59,54 @@ AdjMatrix *Create(){
 	
 	return adj;
 } 
-
-//Prim算法求最小生成树 
-void MiniSpanTree_Prim(AdjMatrix *G){
-	int min,i,j,k;
-	int adjvex[MAXVEX];//保存相关顶点下标
-	int lowcost[MAXVEX];//保存相关顶点的权值
+//G-->图，v0-->源点，P[v][w]表示v到其余各点w最短路径，D[v][w]表示v到其余各点w的带权路径长度和 
+void ShortestPath_Floyd(AdjMatrix *G,int P[MAXVEX][MAXVEX],int D[MAXVEX][MAXVEX]){
+	int v,w,k;
 	
-	lowcost[0]=0; //初始化第一个权值为0，即v0加入生成树中
-	adjvex[0]=0; //初始化第一个顶点下标为0
+	//初始化D和P 
+	for(v=0;v<G->vexnum;v++){
+		for(w=0;w<G->vexnum;w++){
+			D[v][w] = G->acre[v][w];
+			P[v][w] = w; 
+		}
+	}
 	
-	for(i=1;i<G->vexnum;i++){
-		lowcost[i]=G->acre[0][i]; //将与v0顶点相关点的权值存入lowcost数组中
-		adjvex[i]=0;  //都初始化为vo的下标 
-	} 
-	
-	for(i=1;i<G->vexnum;i++){
-		min = INFINITY; //初始化权值为无穷
-		j=1;k=0;
-		
-		//寻找当前权值最小的边 
-		while(j<G->vexnum){
-			if(lowcost[j]!=0&&lowcost[j]<min){//如果权值不为0切小于min
-				min = lowcost[j];
-				k=j; 
-			}	
-			j++;
-		} 
-		
-		printf("(%c,%c)",G->Vex[adjvex[k]],G->Vex[k]);//打印当前顶点中权值最小的边
-		lowcost[k]=0;//将当前顶点的权值置为0，表示完成任务
-		
-		
-		//更新lowcost和adjvex数组 
-		for(j=1;j<G->vexnum;j++){
-			if(lowcost[j]!=0&&G->acre[k][j]<lowcost[j]){
-				lowcost[j]=G->acre[k][j];
-				adjvex[j]=k;
+	for(k=0;k<G->vexnum;k++){
+		for(v=0;v<G->vexnum;v++){
+			for(w=0;w<G->vexnum;w++){
+				
+				if(D[v][w]>D[v][k]+D[k][w]){ //如果经过下标为k的顶点路径比原两点间的路径更短，则更新 
+					D[v][w] = D[v][k]+ D[k][w];
+					P[v][w] = P[v][k]; //路径设置经过下标为k的顶点 
+				}
 			}
-		} 
-	} 
-} 
-int main(void){
-	AdjMatrix *adj;
-	adj = Create();
-	MiniSpanTree_Prim(adj);
-	printf("\n"); 
+		}
+	}
+
 }
 
-
+int main(void){
+	AdjMatrix *adj;
+	adj=Create();
+	int P[MAXVEX][MAXVEX],D[MAXVEX][MAXVEX];
+	ShortestPath_Floyd(adj,P,D); 
 	
+	int v,w;
+
+	printf("矩阵D:\n");
+	for(v=0;v<adj->vexnum;v++){
+		for(w=0;w<adj->vexnum;w++){
+			printf("%-4d",D[v][w]);
+		}
+		printf("\n"); 
+	} 
+	
+	printf("\n矩阵P:\n");
+	for(v=0;v<adj->vexnum;v++){
+		for(w=0;w<adj->vexnum;w++){
+			printf("%-4d",P[v][w]);
+		}
+		printf("\n"); 
+	} 
+	
+}
