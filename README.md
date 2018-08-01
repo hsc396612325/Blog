@@ -1,5 +1,6 @@
 ﻿# 对应博客地址
 * text01:[链表及其简单应用3————一元多项式的运算](http://blog.csdn.net/qq_38499859/article/details/78058545/)
+* test09:[c语言小项目————2048 ](http://blog.csdn.net/qq_38499859/article/details/72859112#comments)
 * test20:[数据结构1—————栈的概念和运算](http://mp.blog.csdn.net/mdeditor/index/77992788)
 * text02:[数据结构2—————队的概念和运算](http://blog.csdn.net/qq_38499859/article/details/78152641)
 * text03:[数据结构3————队栈的应用1](http://blog.csdn.net/qq_38499859/article/details/78154675)
@@ -8,7 +9,6 @@
 * test06:[数据结构6————栈的应用3-后缀表达式 ](http://blog.csdn.net/qq_38499859/article/details/78257836)
 * test07:[数据结构7————串-从c语言String库源码来学习 ](http://blog.csdn.net/qq_38499859/article/details/78289568)
 * test08:[数据结构8————串的BF匹配模式和KMP匹配模式 ](http://blog.csdn.net/qq_38499859/article/details/78311159)
-* test09:[c语言小项目————2048 ](http://blog.csdn.net/qq_38499859/article/details/72859112#comments)
 * test11:[数据结构9————马鞍点问题&三元组稀疏矩阵&十字链表稀疏链表的加减法  ](http://blog.csdn.net/qq_38499859/article/details/78500981)
 * test12:[数据结构12————二叉树的遍历和建立](http://blog.csdn.net/qq_38499859/article/details/78828762)
 * test13:[数据结构14————二叉树的线索化](http://blog.csdn.net/qq_38499859/article/details/78837951)
@@ -19,3 +19,4 @@
 * test18:[数据结构19————图的最小生成树Prim&Kruskal ](http://blog.csdn.net/qq_38499859/article/details/79119907)
 * test19:[数据结构20————图的最短路径Dijkstra算法&Floyd算法 ](http://blog.csdn.net/qq_38499859/article/details/79122634)
 * test21:[数据结构21————图的拓扑排序和关键排序 ](http://blog.csdn.net/qq_38499859/article/details/79149348)
+* test22:[android之View篇6————仿陌陌卡片左右滑动选择布局](http://blog.csdn.net/qq_38499859/article/details/79149348)
